@@ -1,7 +1,7 @@
 {
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url     = "github:NixOS/nixpkgs/release-23.11";
+    nixpkgs.url     = "github:NixOS/nixpkgs/release-25.05";
   };
 
   outputs = { self, flake-utils, nixpkgs }:
@@ -13,9 +13,9 @@
           propagatedBuildInputs = [ plumbum ply ];
           src                   = fetchPypi {
             inherit pname version;
-            sha256 = "sha256-LfsXvAVGkHbJfB20wIqFIKP3awhuJuMtAf5OQIryroc=";
+            sha256 = "sha256-7NH4y7f0GAxrXbShenwadN9RmZX18Ybvgc5yqcvQ3Zo=";
           };
-          version               = "2.4b0";
+          version               = "2.4";
         };
         pythonWithPkgs = pkgs.python3.withPackages(p: with p; [
           google-api-python-client
@@ -27,7 +27,7 @@
       in {
         devShell = pkgs.mkShell {
           buildInputs = with pkgs;
-            [ pandoc pyright pythonWithPkgs ruff ruff-lsp ];
+            [ pandoc pyright pythonWithPkgs ruff ];
           shellHook   = ''
             PYTHONPATH=${pythonWithPkgs}/${pythonWithPkgs.sitePackages}
           '';
