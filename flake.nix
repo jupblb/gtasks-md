@@ -27,7 +27,7 @@
       in {
         devShell = pkgs.mkShell {
           buildInputs = with pkgs;
-            [ pandoc pyright pythonWithPkgs ruff ];
+            [ gh pandoc pyright pythonWithPkgs ruff ];
           shellHook   = ''
             PYTHONPATH=${pythonWithPkgs}/${pythonWithPkgs.sitePackages}
           '';

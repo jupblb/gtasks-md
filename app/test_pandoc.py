@@ -1,8 +1,13 @@
 import unittest
+import warnings
 from inspect import cleandoc
 
 from .pandoc import markdown_to_task_lists, task_lists_to_markdown
 from .tasks import Task, TaskList, TaskStatus
+
+# Suppress ResourceWarnings and UserWarnings from pandoc library
+warnings.filterwarnings("ignore", category=ResourceWarning)
+warnings.filterwarnings("ignore", category=UserWarning, module="pandoc")
 
 
 class TestPandocConversion(unittest.TestCase):
