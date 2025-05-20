@@ -12,6 +12,17 @@ jobs:
         nix_path: nixpkgs=channel:nixos-unstable
     - run: nix develop -c python -m unittest
     - run: nix develop -c ruff check .
+  python-pip-compatibility:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+    - name: Run tests
+      run: python -m unittest
   readme-test:
     runs-on: ubuntu-latest
     steps:
